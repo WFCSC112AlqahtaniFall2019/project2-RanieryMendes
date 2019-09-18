@@ -7,7 +7,11 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
 
 void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right) {
 
-    // test if mergeSort is being called
+    // int left = first index of the vector
+
+    // int right = last index of the vector
+
+    // if branch to test for base case
 
     if (a.size() == 1 ) {
 
@@ -15,14 +19,17 @@ void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right) {
 
     }
 
+    // if branch to execute until virtually divide the vector into just one element
+
     if(right -left >= 1 ) {
 
     int mid = left + (right - left) / 2;
 
-    mergeSort(a, tmp, left, mid ); // sort L
+    mergeSort(a, tmp, left, mid ); // call mergeSort to sort L (vector's left half)
 
-    mergeSort(a, tmp, mid + 1 , right); // sort Right
+    mergeSort(a, tmp, mid + 1 , right); // call mergeSort to sort R (vector's right half)
 
+    // call mergeSortedList to merge and sort the two lists (L and R) together
     mergeSortedLists(a, tmp, left, mid, right);
 }
 
@@ -30,19 +37,30 @@ void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right) {
 
 void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, int right) {
 
-    int b = left;
+    int b = left;    // int b = to first index of the list
 
-    int c = middle + 1;
+    int c = middle + 1; // int c = to index middle +1 of the list
 
-    int d = middle;
+    int d = middle; // int d = to the middle of the list
 
-    int e = right;
+    int e = right; // int e  = to the last index of the list
+
+
+    // for loop to allocate the elements (sorted) into the vector tmp through the use if and else-if branches
 
     for (int f = left; f < e + 1; f++) {
 
+        // if and else-if branches bellow are used to allocate the vector a's elements into the tmp vector, storing such elements in order.
+
+
+
         if (c > e && b > d) {
-            // do nothing
+
+            /* If branch to do nothing  if the expressions  index middle + 1 > the last index of the list
+         * and index of vector's first element >  index of middle element evaluate to true */
+
         }
+
 
         else if (c > e) {
             tmp.at(f) = a.at(b);
@@ -66,6 +84,7 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
         }
     }
 
+    // for loop to correctly allocate in order the elements stored in tmp into vector a
 
   for (int p = left; p < right +1 ; p++) {
 
@@ -86,8 +105,28 @@ int main() {
 
     vector<int> v(length);  // vector to be sorted
     vector<int> t(length);  // temporary workspace
+
+
     // unit test for merge
-    /* your code here */
+
+    //initializing vector for test mergeSortedList
+
+    vector <int> test = {9, 89, 71, 45, 1, 52, 37, 16};
+    vector <int> tmp_test;  // temporary workspace for unit test
+    tmp_test.resize(8);
+
+    mergeSort(test, tmp_test, 0,7);
+    cout << "Unit test" << endl << endl << "Testing mergeSortedList" << endl << endl << "Unsorted List: 9 89 71 45 1 52 37 16. Expected Sorted List: 1 9 16 37 45 52 71 89" << endl;
+    cout << endl << "mergeSortedList obtained: ";
+    for(int i = 0; i < test.size(); i++) {
+        cout << test.at(i) << '\t';
+    }
+
+    cout << endl << endl;
+
+
+
+
     // initialize and print input
     for(int i = 0; i < v.size(); i++) {
         v.at(i) = rand() % 100;
@@ -97,9 +136,11 @@ int main() {
 
     // sort v
 
-    int last = v.size()-1;
+    int last = v.size()-1; // get the index of v's last element
 
-    int mid = (0 + last) / 2;
+    int mid = (0 + last) / 2; // get the index of v's middle element
+
+    //call mergeSort to sort the vector v
 
     mergeSort(v,t,0, last);
 
@@ -119,4 +160,4 @@ int main() {
     return 0;
 }
 
-/* your code here */
+
