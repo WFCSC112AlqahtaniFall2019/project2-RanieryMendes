@@ -37,9 +37,9 @@ void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right) {
 
 void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, int right) {
 
-    int b = left;    // int b = to first index of the list
+    int b = left;    // int b = to the first index of the list
 
-    int c = middle + 1; // int c = to index middle +1 of the list
+    int c = middle + 1; // int c = to the index middle +1 of the list
 
     int d = middle; // int d = to the middle of the list
 
@@ -84,7 +84,7 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
         }
     }
 
-    // for loop to correctly allocate in order the elements stored in tmp into vector a
+    // for loop to correctly allocate  the elements stored in tmp into vector a
 
   for (int p = left; p < right +1 ; p++) {
 
@@ -115,9 +115,20 @@ int main() {
     vector <int> tmp_test;  // temporary workspace for unit test
     tmp_test.resize(8);
 
-    mergeSort(test, tmp_test, 0,7);
-    cout << "Unit test" << endl << endl << "Testing mergeSortedList" << endl << endl << "Unsorted List: 9 89 71 45 1 52 37 16. Expected Sorted List: 1 9 16 37 45 52 71 89" << endl;
-    cout << endl << "mergeSortedList obtained: ";
+    mergeSort(test, tmp_test, 0,7); // call merge sort that will call mergeSortedList within it and it will test this later function.
+    mergeSortedLists(test, tmp_test, 0, 3, 7); // call mergeSortedListed to be tested below.
+
+    // TESTING if mergeSortedList worked, that is, check if the list is sorted
+    for(int i = 1; i < test.size(); i++)
+        assert(test.at(i-1) <= test.at(i));
+
+
+
+
+
+    cout << "Unit test" << endl << endl << "Testing mergeSortedList" << endl;
+    cout << endl << "Unsorted List: 9 89 71 45 1 52 37 16 " << endl << "Expected Sorted List: 1 9 16 37 45 52 71 89" << endl;
+    cout << endl << "mergeSortedList works. It obtained: ";
     for(int i = 0; i < test.size(); i++) {
         cout << test.at(i) << '\t';
     }
@@ -125,9 +136,10 @@ int main() {
     cout << endl << endl;
 
 
-
-
     // initialize and print input
+
+    cout << "Program running: " << endl;
+
     for(int i = 0; i < v.size(); i++) {
         v.at(i) = rand() % 100;
         cout << v.at(i) << '\t';
@@ -143,6 +155,7 @@ int main() {
     //call mergeSort to sort the vector v
 
     mergeSort(v,t,0, last);
+
 
 
     // print output
