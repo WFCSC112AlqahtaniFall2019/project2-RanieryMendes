@@ -60,25 +60,19 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
          * and index of vector's first element >  index of middle element evaluate to true */
 
         }
-
-
         else if (c > e) {
             tmp.at(f) = a.at(b);
-
             b++;
         }
         else if (b > d) {
             tmp.at(f) = a.at(c);
-
             c++;
         }
         else if (a.at(b) > a.at(c)) {
             tmp.at(f) = a.at(c);
-
             c++;
         }
         else if (a.at(b) <= a.at(c)) {
-
             tmp.at(f) = a.at(b);
             b++;
         }
@@ -108,6 +102,7 @@ int main() {
 
 
     // unit test for merge
+    //It uses both testbench and assert function to test mergeSortedList
 
     //initializing vector for test mergeSortedList
 
@@ -118,16 +113,15 @@ int main() {
     mergeSort(test, tmp_test, 0,7); // call merge sort that will call mergeSortedList within it and it will test this later function.
     mergeSortedLists(test, tmp_test, 0, 3, 7); // call mergeSortedListed to be tested below.
 
-    // TESTING if mergeSortedList worked, that is, check if the list is sorted
+    // TESTING through assert function if mergeSortedList worked, that is, check if the list is sorted
     for(int i = 1; i < test.size(); i++)
         assert(test.at(i-1) <= test.at(i));
 
 
 
-
-
     cout << "Unit test" << endl << endl << "Testing mergeSortedList" << endl;
     cout << endl << "Unsorted List: 9 89 71 45 1 52 37 16 " << endl << "Expected Sorted List: 1 9 16 37 45 52 71 89" << endl;
+    //testing THROUGH testbench
     cout << endl << "mergeSortedList works. It obtained: ";
     for(int i = 0; i < test.size(); i++) {
         cout << test.at(i) << '\t';
