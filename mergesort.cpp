@@ -53,7 +53,6 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
         // if and else-if branches bellow are used to allocate the vector a's elements into the tmp vector, storing such elements in order.
 
 
-
         if (c > e && b > d) {
 
             /* If branch to do nothing  if the expressions  index middle + 1 > the last index of the list
@@ -102,38 +101,28 @@ int main() {
 
 
     // unit test for merge
-    //It uses both testbench and assert function to test mergeSortedList
 
     //initializing vector for test mergeSortedList
+    vector <int> test = {15, 4, 6, 8};
+    // temporary workspace for unit test
+    vector <int> tmp_test;
+    // expected order of elements within the vector after calling the mergeSortedList
+    vector <int> answer = {6,8, 15, 4};
+    tmp_test.resize(4);   // set size temporary workspace for unit test
 
-    vector <int> test = {9, 89, 71, 45, 1, 52, 37, 16};
-    vector <int> tmp_test;  // temporary workspace for unit test
-    tmp_test.resize(8);
+    int lastTest = test.size() -1 ; //get the last index of the list
+    int middleTest = (0 + lastTest) /2; // get middle index of the list
+    mergeSortedLists(test, tmp_test, 0, middleTest, lastTest); // call mergeSortedListed to test it below.
 
-    mergeSort(test, tmp_test, 0,7); // call merge sort that will call mergeSortedList within it and it will test this later function.
-    mergeSortedLists(test, tmp_test, 0, 3, 7); // call mergeSortedListed to be tested below.
+    // TESTING through assert function if mergeSortedList works
+    // it asserts the result obtained from the function with the vector Answer, which has the expected output.
 
-    // TESTING through assert function if mergeSortedList worked, that is, check if the list is sorted
-    for(int i = 1; i < test.size(); i++)
-        assert(test.at(i-1) <= test.at(i));
+     for(int i = 1; i < test.size(); i++)
+      assert(test.at(i-1) = answer.at(i-1));
 
-
-
-    cout << "Unit test" << endl << endl << "Testing mergeSortedList" << endl;
-    cout << endl << "Unsorted List: 9 89 71 45 1 52 37 16 " << endl << "Expected Sorted List: 1 9 16 37 45 52 71 89" << endl;
-    //testing THROUGH testbench
-    cout << endl << "mergeSortedList works. It obtained: ";
-    for(int i = 0; i < test.size(); i++) {
-        cout << test.at(i) << '\t';
-    }
-
-    cout << endl << endl;
 
 
     // initialize and print input
-
-    cout << "Program running: " << endl;
-
     for(int i = 0; i < v.size(); i++) {
         v.at(i) = rand() % 100;
         cout << v.at(i) << '\t';
